@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
+    <th:block th:fragment="content">
+        <h1>New Food Finder Home</h1>
+        <img src="/img/random.png" alt="home img" >
+        <span>
+            <a th:href="@{/newfoodfinder/register}">
+                <button type="button" class="btn btn-outline-primary">Register</button>
+            </a>
+            <a th:href="@{/newfoodfinder/login}">
+                <button type="button" class="btn btn-outline-primary">Login</button>
+            </a>
+        </span>
+        <div class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">$times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Modal body text goes here.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script th:inline="javascript">
+            var msg = [[${msg}]];
+            console.log(msg);
+            if(msg){
+                $(".modal").modal();
+            }
+        </script>
+    </th:block>
+</th:block>
