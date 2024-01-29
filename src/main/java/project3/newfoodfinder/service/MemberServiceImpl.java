@@ -26,11 +26,11 @@ public class MemberServiceImpl implements MemberService {
         return entity.getMbnum();
     }
 
-    @Override
-    public boolean login(MemberDTO dto){
-        log.info("login dto----------------------");
-        log.info(dto);
-        boolean pass = true;
-        return pass;
-    }
+//    @Override
+//    public boolean login(MemberDTO dto){
+//        log.info("login dto----------------------");
+//        log.info(dto);
+//        boolean pass = true;
+//        return pass;
+//    }
 }

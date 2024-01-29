@@ -3,12 +3,15 @@ package project3.newfoodfinder.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import project3.newfoodfinder.dto.MemberDTO;
+import project3.newfoodfinder.dto.PageRequestDTO;
 import project3.newfoodfinder.service.MemberService;
+import project3.newfoodfinder.service.TestlistService;
 
 @Controller
 @RequestMapping("/newfoodfinder")
@@ -17,11 +20,18 @@ import project3.newfoodfinder.service.MemberService;
 public class NewfoodfinderController {
 
     private final MemberService service;
+    private final TestlistService testlistService;
 
     @GetMapping({"/","/home"})
     public String home(){
         log.info("home...");
         return "/newfoodfinder/home";
+    }
+
+    @GetMapping("/list")
+    public String list(){
+        log.info("list..");
+        return "/newfoodfinder/list";
     }
 
     // get 방식으로 회원가입 화면보여주기
