@@ -28,8 +28,34 @@ public class TestlistServiceTests {
     public void testList(){
         PageRequestDTO pageRequestDTO = PageRequestDTO.builder().page(1).size(10).build();
         PageResultDTO<ListDTO, Testlist> resultDTO = service.getList(pageRequestDTO);
+        System.out.println("PREV: "+resultDTO.isPrev());
+        System.out.println("NEXT: "+resultDTO.isNext());
+        System.out.println("TOTAL: "+resultDTO.getTotalPage());
+        System.out.println("-------------------------------------------");
         for (ListDTO listDTO : resultDTO.getDtoList()){
             System.out.println(listDTO);
         }
+        System.out.println("===========================================");
+        resultDTO.getPageList().forEach(i -> System.out.println(i));
+    }
+
+    @Test
+    public void testSearch(){
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+                .page(1)
+                .size(10)
+                .type("tc")
+                .keyword("S")
+                .build();
+        PageResultDTO<ListDTO, Testlist> resultDTO = service.getList(pageRequestDTO);
+        System.out.println("PREV: "+resultDTO.isPrev());
+        System.out.println("NEXT: "+resultDTO.isNext());
+        System.out.println("TOTAL: "+resultDTO.getTotalPage());
+        System.out.println("---------------------------------");
+        for(ListDTO listDTO : resultDTO.getDtoList()){
+            System.out.println(listDTO);
+        }
+        System.out.println("=================================");
+        resultDTO.getPageList().forEach(i -> System.out.println(i));
     }
 }

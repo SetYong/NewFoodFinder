@@ -10,6 +10,12 @@ public interface TestlistService {
 
     PageResultDTO<ListDTO, Testlist> getList(PageRequestDTO requestDTO);
 
+    ListDTO read(Long listno);
+
+    void remove(Long listno);
+
+    void modify(ListDTO dto);
+
     default Testlist dtoToEntity(ListDTO dto) {
         Testlist entity = Testlist.builder()
                 .listno(dto.getListno())
