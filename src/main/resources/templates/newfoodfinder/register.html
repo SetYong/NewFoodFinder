@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    }
+    input[type="password"]{ -webkit-text-security: disc;}
+</style>
+<script type="text/javascript">
+    function maxLengthCheck(object){
+        if (object.value.length > object.maxLength){
+          object.value = object.value.slice(0, object.maxLength);
+        }
+      }
+</script>
+    <th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
+        <th:block th:fragment="content">
+            <h1 class="mt-4">New Food Finder Register Page</h1>
+            <form th:action="@{/newfoodfinder/register}" th:method="post">
+                <div class="form-group">
+                    <label >userid</label>
+                    <input type="text" style="width: 300px;" class="form-control" name="userid">
+                    <button type="button" name="useridcheck" class="btn btn-primary" style="width: 100px;"onclick="useridcheck()">중복확인</button>
+                </div>
+                <div class="form-group">
+                    <label >password</label>
+                    <input type="password" style="width: 300px;" class="form-control" name="password">
+                </div>
+                <div class="form-group">
+                    <label >password check</label>
+                    <input type="password" style="width: 300px;" class="form-control" name="passwordcheck">
+                </div>
+                <div class="form-group">
+                    <label >name</label>
+                    <input type="text" style="width: 300px;" class="form-control" name="name">
+                </div>
+                <div class="form-group">
+                    <label >ssn</label>
+                    <input type="number" style="width: 300px;" class="form-control" name="ssn1" maxlength=6 oninput="maxLengthCheck(this)"> -
+                    <input type="password" style="width: 300px;" class="form-control" name="ssn2" maxlength=7 oninput="maxLengthCheck(this)">
+                </div>
+                <div class="form-group">
+                    <label >nickname</label>
+                    <input type="text" style="width: 300px;" class="form-control" name="nickname">
+                </div>
+                <div class="form-group">
+                    <label >phone</label>
+                    <input type="number" style="width: 300px;" class="form-control" name="phone1" maxlength="3" oninput="maxLengthCheck(this)"> -
+                    <input type="number" style="width: 300px;" class="form-control" name="phone2" maxlength="4" oninput="maxLengthCheck(this)"> -
+                    <input type="number" style="width: 300px;" class="form-control" name="phone3" maxlength="4" oninput="maxLengthCheck(this)">
+                </div>
+                <div class="form-group">
+                    <label >e-mail</label>
+                    <input type="text" style="width: 300px;" class="form-control" name="mail1"> @
+                    <input type="text" style="width: 300px;" class="form-control" name="mail2">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </th:block>
+    </th:block>
+    </html>
