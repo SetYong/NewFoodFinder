@@ -2,6 +2,9 @@ package project3.newfoodfinder.service;
 
 import project3.newfoodfinder.dto.MemberDTO;
 import project3.newfoodfinder.entity.Member;
+import project3.newfoodfinder.repository.MemberRepository;
+
+import java.util.Optional;
 
 public interface MemberService {
     Long register(MemberDTO dto);
@@ -29,4 +32,5 @@ public interface MemberService {
                 .build();
         return dto;
     }
+
 }

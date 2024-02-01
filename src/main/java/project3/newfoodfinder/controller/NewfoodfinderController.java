@@ -50,18 +50,7 @@ public class NewfoodfinderController {
         return "redirect:/newfoodfinder/home";
     }
 
-    //get 방식으로 로그인 화면 보여주기
-    @GetMapping("/login")
-    public void login(){
-        log.info("login get...");
-    }
-    //post 방식으로 로그인 확인하기
-    @PostMapping("/login")
-    public boolean loginPost(MemberDTO dto, RedirectAttributes redirectAttributes){
-        log.info("login...");
-        boolean pass = true;
-        return pass;
-    }
+
 
     //---------------------------------------------------------------------------------
     @GetMapping("/listregister")
