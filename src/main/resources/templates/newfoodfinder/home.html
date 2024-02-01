@@ -4,17 +4,30 @@
     <th:block th:fragment="content">
         <h1>New Food Finder Home</h1>
         <img src="/img/random.png" alt="home img" >
-        <span>
-            <a th:href="@{/newfoodfinder/register}">
-                <button type="button" class="btn btn-outline-primary">Register</button>
-            </a>
-            <a th:href="@{/newfoodfinder/login}">
-                <button type="button" class="btn btn-outline-primary">Login</button>
-            </a>
-            <a th:href="@{/newfoodfinder/list}">
-                <button type="button" class="btn btn-outline-primary">List</button>
-            </a>
-        </span>
+        <div>
+            <h1><a th:href="|/${logintype}|"></a></h1><hr/>
+            <div th:if="${nickname == null}">
+                <h3>로그인 되어있지 않습니다.</h3>
+                <a th:href="@{/newfoodfinder/register}">
+                    <button type="button" class="btn btn-outline-primary">Register</button>
+                </a>
+                <a th:href="@{/newfoodfinder/login}">
+                    <button type="button" class="btn btn-outline-primary">Login</button>
+                </a>
+                <a th:href="@{/newfoodfinder/list}">
+                    <button type="button" class="btn btn-outline-primary">List</button>
+                </a>
+                <a th:href="@{/uploadEx}">
+                    <button type="button" class="btn btn-outline-primary">upload</button>
+                </a>
+            </div>
+            <div th:unless="${nickname == null}">
+                <h3>[[${nickname}]] 님 환영합니다.</h3>
+                <a th:href="@{/newfoodfinder/list}">
+                    <button type="button" class="btn btn-outline-primary">List</button>
+                </a>
+            </div>
+        </div>
         <div class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">

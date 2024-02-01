@@ -7,10 +7,12 @@ import project3.newfoodfinder.dto.MemberDTO;
 import project3.newfoodfinder.entity.Member;
 import project3.newfoodfinder.repository.MemberRepository;
 
+import java.util.Optional;
+
 @Service
 @Log4j2
 @RequiredArgsConstructor
-public class MemberServiceImpl implements MemberService {
+public class MemberServiceImpl implements MemberService{
 
     private final MemberRepository repository;
 
@@ -26,11 +28,4 @@ public class MemberServiceImpl implements MemberService {
         return entity.getMbnum();
     }
 
-//    @Override
-//    public boolean login(MemberDTO dto){
-//        log.info("login dto----------------------");
-//        log.info(dto);
-//        boolean pass = true;
-//        return pass;
-//    }
 }
