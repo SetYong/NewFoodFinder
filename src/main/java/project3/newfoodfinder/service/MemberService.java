@@ -1,36 +1,36 @@
 package project3.newfoodfinder.service;
 
-import project3.newfoodfinder.dto.MemberDTO;
-import project3.newfoodfinder.entity.Member;
-import project3.newfoodfinder.repository.MemberRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.parameters.P;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-public interface MemberService {
-    Long register(MemberDTO dto);
+@Service
+@RequiredArgsConstructor
+public class MemberService implements UserDetailsService {
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    Date time = new Date();
+    String localTime = format.format(time);
 
-    default Member dtoToEntity(MemberDTO dto){
-        Member entity = Member.builder()
-                .name(dto.getName())
-                .userid(dto.getUserid())
-                .password(dto.getPassword())
-                .mail(dto.getMail1()+"@"+dto.getMail2())
-                .nickname(dto.getNickname())
-                .phone(dto.getPhone1()+"-"+dto.getPhone2()+"-"+dto.getPhone3())
-                .ssn(dto.getSsn1()+"-"+dto.getSsn2())
-                .build();
-        return entity;
+    private final MemberMapper memberMapper;
+
+    @Transactional
+    public void joinMember(Member member){
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        member.setMemberPwd(passwordEncoder.encode(member.getPassword()));
+        member.setMGradeStr("ROLE_USER");
+        memberMapper.save(member);
     }
 
-    default MemberDTO entityToDto(Member entity){
-        MemberDTO dto = MemberDTO.builder()
-                .mbnum(entity.getMbnum())
-                .name(entity.getName())
-                .mail(entity.getMail())
-                .nickname(entity.getNickname())
-                .phone(entity.getPhone())
-                .build();
-        return dto;
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
+        return null;
     }
-
 }
