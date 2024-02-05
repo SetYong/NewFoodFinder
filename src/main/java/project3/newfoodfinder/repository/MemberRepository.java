@@ -5,5 +5,5 @@ import project3.newfoodfinder.entity.Member;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
-    Member findByUserid(String userid);
+    Member findByLoginId(String username);
 }

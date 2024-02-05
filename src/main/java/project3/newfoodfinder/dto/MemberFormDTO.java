@@ -29,8 +29,11 @@ public class MemberFormDTO {
     @NotBlank(message = "닉네임을 입력해주세요.")
     private String nickname;
 
+    @NotBlank(message = "주소를 입력해주세요.")
+    private String address;
+
     @Builder
-    public MemberFormDTO(String username, String userid, String password, String ssn, String mail, String phone, String nickname){
+    public MemberFormDTO(String username, String userid, String password, String ssn, String mail, String phone, String nickname, String address){
         this.username = username;
         this.userid = userid;
         this.password = password;
@@ -38,5 +41,6 @@ public class MemberFormDTO {
         this.mail = mail;
         this.phone = phone;
         this.nickname = nickname;
+        this.address = address;
     }
 }

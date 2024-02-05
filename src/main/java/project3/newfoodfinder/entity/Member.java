@@ -1,72 +1,51 @@
 package project3.newfoodfinder.entity;
 
+
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import project3.newfoodfinder.domain.MemberRole;
-import project3.newfoodfinder.dto.MemberFormDTO;
+import lombok.*;
+import org.springframework.cglib.core.Local;
+
+import java.time.LocalDateTime;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "member")
+@AllArgsConstructor
+@ToString
+@Table(name = "MEMBER_TB")
 public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long mbnum;
+    @Column(name = "MEMBER_ID")
+    private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String mail;
+    @Column(name = "MEMBER_LOGIN_ID")
+    private String loginId;
 
-    @Column(nullable = false)
-    private String userid;
+    @Column(name = "MEMBER_ROLE")
+    private String role;
 
-    @Column(nullable = false)
+    @Column(name = "MEMBER_NAME")
+    private String name;
+
+    @Column(name = "MEMBER_PASSWORD")
     private String password;
 
-    @Column(nullable = false)
-    private String username;
+    @Column(name = "MEMBER_EMAIL")
+    private String email;
 
-    @Column(nullable = false, unique = true)
-    private String nickname;
+    @Column(name = "IS_USED")
+    private String isUsed;
 
-    @Column(nullable = false)
-    private String ssn;
+    @Column(name = "IS_DEL")
+    private String isDel;
 
-    @Column(nullable = false)
-    private String phone;
+    @Column(name = "ISRT_DATE")
+    private LocalDateTime isrtDate;
 
-    @Enumerated(EnumType.STRING)
-    private MemberRole role;
-
-    @Builder
-    public Member(String username, String userid, String password, String ssn, String mail, String phone, String nickname){
-        this.username = username;
-        this.userid = userid;
-        this.password = password;
-        this.ssn = ssn;
-        this.mail = mail;
-        this.phone = phone;
-        this.nickname = nickname;
-    }
-
-    public static Member createMember(MemberFormDTO memberFormDTO, PasswordEncoder passwordEncoder){
-        Member member = Member.builder()
-                .username(memberFormDTO.getUsername())
-                .userid(memberFormDTO.getUserid())
-                .password(memberFormDTO.getPassword())
-                .ssn(memberFormDTO.getSsn())
-                .mail(memberFormDTO.getMail())
-                .phone(memberFormDTO.getPhone())
-                .nickname(memberFormDTO.getNickname())
-                .build();
-        return member;
-    }
-
+    @Column(name = "UPDT_DATE")
+    private LocalDateTime updtDate;
 }
