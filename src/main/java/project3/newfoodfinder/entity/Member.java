@@ -1,45 +1,59 @@
 package project3.newfoodfinder.entity;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.cglib.core.Local;
-
-import java.security.PublicKey;
-import java.time.LocalDateTime;
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Getter
 @Builder
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Table(name = "MEMBER_TB")
-public class Member {
+@NoArgsConstructor
+@ToString
+public class Member extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MEMBER_ID")
-    private Long id;
+    private Long User_num;
 
-    @Column(name = "MEMBER_LOGIN_ID", nullable = false)
-    private String loginId;
+    @Column(length=50, nullable = false)
+    private String user_id;
 
-    @Column(name = "MEMBER_NAME", nullable = false)
-    private String name;
-
-    @Column(name = "MEMBER_PASSWORD", nullable = false)
+    @Column(length = 50, nullable = false)
     private String password;
 
-    @Column(name = "MEMBER_EMAIL", nullable = false)
-    private String email;
+    @Column(length = 50, nullable = false)
+    private String user_name;
 
-    @Column(name = "ISRT_DATE")
-    private LocalDateTime isrtDate;
+    @Column(length = 100, nullable = false)
+    private String mail;
 
-    @Column(name = "UPDT_DATE")
-    private LocalDateTime updtDate;
+    @Column(length = 100, nullable = false)
+    private String phone;
 
-    private String imgUrl;
+    @Column(length = 50, nullable = false)
+    private String ssn;
 
+    @Column(length = 200, nullable = false)
+    private String nickname;
+
+    @Column(length = 50, nullable = false)
+    @ColumnDefault("0")
+    private Long admin_check;
+
+    public void changePassword(String password){
+        this.password = password;
+    }
+    public void changeName(String user_name){
+        this.user_name = user_name;
+    }
+    public void changeMail(String mail){
+        this.mail = mail;
+    }
+    public void changePhone(String phone){
+        this.phone = phone;
+    }
+    public void changeNickname(String nickname){
+        this.nickname = nickname;
+    }
 }
