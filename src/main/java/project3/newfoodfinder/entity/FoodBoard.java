@@ -1,11 +1,15 @@
 package project3.newfoodfinder.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 @Entity
-@Data
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class FoodBoard extends BaseEntity {
 
     @Id
@@ -26,4 +30,11 @@ public class FoodBoard extends BaseEntity {
     @Column(nullable = false)
     @ColumnDefault("0")
     private Long admin_check;
+
+    public void changeTitle(String title){
+        this.title = title;
+    }
+    public void changeContent(String content){
+        this.content = content;
+    }
 }
