@@ -8,9 +8,9 @@ import project3.newfoodfinder.entity.FoodBoard;
 public interface FoodService {
     Long register(FoodBoardDTO dto);
 
-    FoodBoardDTO read(Long gno);
+    FoodBoardDTO read(Long headnum);
 
-    void remove(Long gno);
+    void remove(Long headnum);
 
     void modify(FoodBoardDTO dto);
     PageResultDTO<FoodBoardDTO, FoodBoard> getList(PageRequestDTO requestDTO);
